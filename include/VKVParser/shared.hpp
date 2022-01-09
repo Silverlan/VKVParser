@@ -7,18 +7,18 @@
 
 #include <functional>
 
-enum class LogLevel {
-    ALL = 0,
-    TRACE = 1,
-    DEBUG = 2,
-    WARN = 3,
-    ERR = 4,
-};
+namespace ValveKeyValueFormat {
+	enum class LogLevel {
+		ALL = 0,
+		TRACE = 1,
+		DEBUG = 2,
+		WARN = 3,
+		ERR = 4,
+	};
 
-using LoggerFunction = std::function<void(const std::string& message, LogLevel severity)>;
-extern LoggerFunction logger_function;
+	using LoggerFunction = std::function<void(const std::string& message, LogLevel severity)>;
+	extern LoggerFunction logger_function;
 
-    extern LoggerFunction* logger_function;
 
     inline std::string_view trim(std::string_view in) {
         uint32_t left = 0;
@@ -33,16 +33,13 @@ extern LoggerFunction logger_function;
 
         return in.substr(left, right - left);
     }
-inline std::string to_lower(std::string& s) {
-    char* c = const_cast<char*>(s.c_str());
-    size_t l = s.size();
-    for (char* c2 = c; c2 < c + l; c2++) *c2 = tolower(*c2);
-    return s;
-}
-}
-
-
-;
+    inline std::string to_lower(std::string& s) {
+        char* c = const_cast<char*>(s.c_str());
+        size_t l = s.size();
+        for (char* c2 = c; c2 < c + l; c2++) *c2 = tolower(*c2);
+        return s;
+    }
+};
 
 #ifdef _WIN32
 #define LIBRARY_API __declspec(dllexport)
