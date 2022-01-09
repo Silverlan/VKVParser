@@ -5,6 +5,8 @@
 #ifndef KVPARSER_SHARED_HPP
 #define KVPARSER_SHARED_HPP
 
+#include <functional>
+
 enum class LogLevel {
     ALL = 0,
     TRACE = 1,
@@ -13,15 +15,8 @@ enum class LogLevel {
     ERR = 4,
 };
 
-namespace ValveKeyValueFormat {
-    enum class LogLevel {
-        ALL = 0,
-        TRACE = 1,
-        DEBUG = 2,
-        WARN = 3,
-        ERROR = 4,
-    };
-    typedef void LoggerFunction(const std::string& message, LogLevel severity);
+using LoggerFunction = std::function<void(const std::string& message, LogLevel severity)>;
+extern LoggerFunction logger_function;
 
     extern LoggerFunction* logger_function;
 
