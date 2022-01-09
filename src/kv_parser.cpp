@@ -3,13 +3,14 @@
 //
 
 #include "VKVParser/kv_parser.hpp"
-#include <algorithm>
-#include <format>
-#include <string>
+#include "VKVParser/shared.hpp"
+#include <sstream>
 ValveKeyValueFormat::TokenPair ValveKeyValueFormat::KVParser::peek() {
     if (m_last_peek.first == TokenTypes::EMPTY) {
         m_last_peek = m_lexer.next_token();
-        ValveKeyValueFormat::logger_function(std::format("TokenID {} token value: \"{}\"", (uint32_t) m_last_peek.first, m_last_peek.second), ValveKeyValueFormat::LogLevel::TRACE);
+		std::stringstream log_msg;
+		log_msg<<"TokenID "<<((uint32_t) m_last_peek.first)<<" token value: \""<<m_last_peek.second<<"\"";
+        logger_function(log_msg.str(), LogLevel::TRACE);
         fflush(stdout);
     }
     return m_last_peek;
@@ -21,7 +22,9 @@ ValveKeyValueFormat::TokenPair ValveKeyValueFormat::KVParser::advance() {
         return result;
     }
     auto token = m_lexer.next_token();
-    ValveKeyValueFormat::logger_function(std::format("TokenID {} token value: \"{}\"", (uint32_t) m_last_peek.first, m_last_peek.second), ValveKeyValueFormat::LogLevel::TRACE);
+	std::stringstream log_msg;
+	log_msg<<"TokenID "<<((uint32_t) m_last_peek.first)<<" token value: \""<<m_last_peek.second<<"\"";
+    logger_function(log_msg.str(), LogLevel::TRACE);
     fflush(stdout);
     return token;
 }
@@ -34,9 +37,11 @@ bool ValveKeyValueFormat::KVParser::match(ValveKeyValueFormat::TokenTypes type, 
 ValveKeyValueFormat::TokenPair ValveKeyValueFormat::KVParser::expect(ValveKeyValueFormat::TokenTypes type) {
     auto token = peek();
     if (token.first != type) {
-        ValveKeyValueFormat::logger_function(std::format("Trying to recover from unexpected token {}:\"{}\", expected {} at {}:{}",
-                                    (uint32_t) token.first, token.second, (uint32_t) type, m_lexer.m_line, m_lexer.m_column),
-                                             ValveKeyValueFormat::LogLevel::WARN);
+		std::stringstream log_msg;
+		log_msg<<"Trying to recover from unexpected token "<<( (uint32_t) token.first)<<":\""<<token.second<<"\", expected "<<((uint32_t) type)
+			<<" at "<<m_lexer.m_line<<":"<<m_lexer.m_column;
+        logger_function(log_msg.str(),
+                        LogLevel::WARN);
         try_to_recover();
         return {TokenTypes::INVALID, ""sv};
     }
@@ -87,7 +92,9 @@ void ValveKeyValueFormat::KVParser::parse() {
             break;
         else {
             auto unexpected = advance();
-            ValveKeyValueFormat::logger_function(std::format("Unexpected token {}:\"{}\" at {}:{}", (uint32_t) unexpected.first, unexpected.second, m_lexer.m_line, m_lexer.m_column), ValveKeyValueFormat::LogLevel::WARN);
+			std::stringstream log_msg;
+			log_msg<<"Unexpected token "<<((uint32_t) unexpected.first)<<":\""<<unexpected.second<<"\" at "<<m_lexer.m_line<<":"<<m_lexer.m_column;
+            logger_function(log_msg.str(), LogLevel::WARN);
             try_to_recover();
         }
     }
