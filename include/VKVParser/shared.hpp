@@ -5,7 +5,13 @@
 #ifndef KVPARSER_SHARED_HPP
 #define KVPARSER_SHARED_HPP
 
-#include <string>
+enum class LogLevel {
+    ALL = 0,
+    TRACE = 1,
+    DEBUG = 2,
+    WARN = 3,
+    ERR = 4,
+};
 
 namespace ValveKeyValueFormat {
     enum class LogLevel {
