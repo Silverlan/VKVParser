@@ -14,7 +14,10 @@ const std::string_view invalid_unquoted_chars{"\"'"};
 char ValveKeyValueFormat::KVLexer::advance() {
     char symbol = this->symbol();
     if (symbol) {
-        if (symbol == '\r' && next_symbol() == '\n') m_offset++;
+        if (symbol == '\r' && next_symbol() == '\n') {
+            m_offset++;
+            return symbol;
+        }
         if (symbol == '\n' || symbol == '\r') {
             m_line++;
             m_column = 1;
