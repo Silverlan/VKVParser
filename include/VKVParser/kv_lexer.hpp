@@ -11,7 +11,7 @@
 
 namespace ValveKeyValueFormat {
     class KVParser;
-    enum class TokenTypes {
+    enum class TokenTypes : int32_t {
         EMPTY = -1,
         INVALID = 0,
         STRING = 1,

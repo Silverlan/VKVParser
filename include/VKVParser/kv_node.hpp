@@ -11,7 +11,7 @@
 #include <utility>
 
 namespace ValveKeyValueFormat {
-	enum class KVNodeType {
+    enum class KVNodeType : int32_t {
 		INVALID = -1,
 		LEAF = 0,
 		BRANCH = 1,

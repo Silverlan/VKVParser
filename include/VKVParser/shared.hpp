@@ -10,7 +10,7 @@
 #include <string>
 
 namespace ValveKeyValueFormat {
-	enum class LogLevel {
+	enum class LogLevel : int8_t {
 		ALL = 0,
 		TRACE = 1,
 		DEBUG = 2,
@@ -45,7 +45,7 @@ namespace ValveKeyValueFormat {
 
 #ifdef _WIN32
 #define LIBRARY_API __declspec(dllexport)
-#elif
+#else
 #define LIBRARY_API
 #endif
 
