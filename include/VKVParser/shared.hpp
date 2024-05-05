@@ -8,6 +8,7 @@
 #include <functional>
 #include <cctype>
 #include <string>
+#include <cinttypes>
 
 namespace ValveKeyValueFormat {
 	enum class LogLevel : int8_t {
