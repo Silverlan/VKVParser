@@ -2,15 +2,11 @@
 // Created by MED45 on 07.01.2022.
 //
 
-#ifndef KVPARSER_KV_NODE_HPP
-#define KVPARSER_KV_NODE_HPP
-#include "shared.hpp"
-#include <memory>
-#include <string>
-#include <unordered_map>
-#include <utility>
+export module REDxEYE.VKVParser:kv_node;
 
-namespace ValveKeyValueFormat {
+export import :shared;
+
+export namespace ValveKeyValueFormat {
     enum class KVNodeType : int32_t {
 		INVALID = -1,
 		LEAF = 0,
@@ -70,5 +66,3 @@ namespace ValveKeyValueFormat {
 	};
 
 };
-
-#endif//KVPARSER_KV_NODE_HPP

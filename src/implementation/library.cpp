@@ -1,6 +1,10 @@
-#include <cstdio>
-#include "VKVParser/library.h"
-#include <VKVParser/kv_parser.hpp>
+module;
+
+#include <stdio.h>
+
+module REDxEYE.VKVParser;
+
+import :library;
 
 namespace ValveKeyValueFormat {
 	ValveKeyValueFormat::LoggerFunction logger_function = [](const std::string& message, ValveKeyValueFormat::LogLevel severity) -> void { fprintf(stderr, "%s\n", message.c_str()); };

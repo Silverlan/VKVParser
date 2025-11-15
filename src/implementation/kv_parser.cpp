@@ -2,9 +2,14 @@
 // Created by MED45 on 08.01.2022.
 //
 
-#include "VKVParser/kv_parser.hpp"
-#include "VKVParser/shared.hpp"
-#include <sstream>
+module;
+
+#include <stdio.h>
+
+module REDxEYE.VKVParser;
+
+import :kv_parser;
+
 ValveKeyValueFormat::TokenPair ValveKeyValueFormat::KVParser::peek() {
     if (m_last_peek.first == TokenTypes::EMPTY) {
         m_last_peek = m_lexer.next_token();
