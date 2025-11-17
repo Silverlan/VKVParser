@@ -44,10 +44,10 @@ export namespace ValveKeyValueFormat {
             if (m_offset + 1 >= m_buffer.size()) return 0;
             return m_buffer[m_offset + 1];
         };
-        inline char advance();
+        char advance();
 
-        inline std::string_view read_simple_string(std::string_view terminators);
-        inline std::string_view read_quoted_string();
+        std::string_view read_simple_string(std::string_view terminators);
+        std::string_view read_quoted_string();
         friend KVParser;
 
     public:
