@@ -1,9 +1,10 @@
 //
 // Created by MED45 on 07.01.2022.
 //
-#include <sstream>
 
-#include "VKVParser/kv_lexer.hpp"
+module REDxEYE.VKVParser;
+
+import :kv_lexer;
 
 using namespace std::literals;
 

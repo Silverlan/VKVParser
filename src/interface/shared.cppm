@@ -2,15 +2,11 @@
 // Created by MED45 on 07.01.2022.
 //
 
-#ifndef KVPARSER_SHARED_HPP
-#define KVPARSER_SHARED_HPP
+export module REDxEYE.VKVParser:shared;
 
-#include <functional>
-#include <cctype>
-#include <string>
-#include <cinttypes>
+export import std.compat;
 
-namespace ValveKeyValueFormat {
+export namespace ValveKeyValueFormat {
 	enum class LogLevel : int8_t {
 		ALL = 0,
 		TRACE = 1,
@@ -43,11 +39,3 @@ namespace ValveKeyValueFormat {
         return s;
     }
 };
-
-#ifdef _WIN32
-#define LIBRARY_API __declspec(dllexport)
-#else
-#define LIBRARY_API
-#endif
-
-#endif//KVPARSER_SHARED_HPP

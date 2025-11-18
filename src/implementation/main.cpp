@@ -1,8 +1,4 @@
-
-#include "VKVParser/kv_lexer.hpp"
-#include <VKVParser/kv_parser.hpp>
-#include <VKVParser/shared.hpp>
-#include <string>
+module REDxEYE.VKVParser;
 
 using namespace std::literals;
 

@@ -2,7 +2,10 @@
 // Created by MED45 on 07.01.2022.
 //
 
-#include "VKVParser/kv_node.hpp"
+module REDxEYE.VKVParser;
+
+import :kv_node;
+
 ValveKeyValueFormat::KVLeaf* ValveKeyValueFormat::KVNode::as_leaf() {
     if (type == KVNodeType::LEAF) return static_cast<KVLeaf*>(this);
     return nullptr;

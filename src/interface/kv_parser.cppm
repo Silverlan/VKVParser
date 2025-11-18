@@ -2,19 +2,16 @@
 // Created by MED45 on 08.01.2022.
 //
 
-#ifndef KVPARSER_KV_PARSER_HPP
-#define KVPARSER_KV_PARSER_HPP
+export module REDxEYE.VKVParser:kv_parser;
 
-#include <string>
-
-#include "kv_lexer.hpp"
-#include "kv_node.hpp"
+export import :kv_lexer;
+export import :kv_node;
 
 using namespace std::literals;
 
-namespace ValveKeyValueFormat {
+export namespace ValveKeyValueFormat {
 
-    static TokenPair EmptyPeek = {TokenTypes::EMPTY, ""sv};
+    TokenPair EmptyPeek = {TokenTypes::EMPTY, ""sv};
 
     class KVParser {
         KVLexer m_lexer;
@@ -51,6 +48,3 @@ namespace ValveKeyValueFormat {
         inline std::shared_ptr<KVNode> root() { return m_root; }
     };
 }// namespace ValveKeyValueFormat
-
-
-#endif//KVPARSER_KV_PARSER_HPP

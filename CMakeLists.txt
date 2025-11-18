@@ -1,24 +1,31 @@
 cmake_minimum_required(VERSION 3.20)
 project(KVParser)
 
-set(CMAKE_CXX_STANDARD 20)
+add_library(KVParser SHARED)
 
-include_directories(./include)
+target_compile_features(KVParser PRIVATE cxx_std_23)
 
+target_sources(KVParser
+  PUBLIC
+    FILE_SET cxx_modules TYPE CXX_MODULES FILES
+    src/interface/kv_lexer.cppm
+    src/interface/kv_node.cppm
+    src/interface/kv_parser.cppm
+    src/interface/library.cppm
+    src/interface/shared.cppm
+    src/vkvparser.cppm
+)
 
-set(KVParserSRC
-        src/library.cpp
-        src/kv_node.cpp
-        src/kv_lexer.cpp
-        src/kv_parser.cpp
-        )
+target_sources(KVParser
+  PRIVATE
+    src/implementation/library.cpp
+    src/implementation/kv_node.cpp
+    src/implementation/kv_lexer.cpp
+    src/implementation/kv_parser.cpp
+)
 
-set(KVParserTestSRC
-        src/main.cpp
-        src/kv_node.cpp
-        src/kv_lexer.cpp
-        src/kv_parser.cpp
-        )
-
-add_library(KVParser SHARED ${KVParserSRC})
-add_executable(KVParserTest ${KVParserTestSRC})
+if(WIN32)
+    target_compile_definitions(KVParser PRIVATE "LIBRARY_API=__declspec(dllexport)")
+else()
+    target_compile_definitions(KVParser PRIVATE "LIBRARY_API=")
+endif()

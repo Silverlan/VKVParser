@@ -2,14 +2,11 @@
 // Created by MED45 on 07.01.2022.
 //
 
-#ifndef KVPARSER_KV_LEXER_HPP
-#define KVPARSER_KV_LEXER_HPP
+export module REDxEYE.VKVParser:kv_lexer;
 
-#include "kv_node.hpp"
-#include <string>
-#include <vector>
+export import :kv_node;
 
-namespace ValveKeyValueFormat {
+export namespace ValveKeyValueFormat {
     class KVParser;
     enum class TokenTypes : int32_t {
         EMPTY = -1,
@@ -47,10 +44,10 @@ namespace ValveKeyValueFormat {
             if (m_offset + 1 >= m_buffer.size()) return 0;
             return m_buffer[m_offset + 1];
         };
-        inline char advance();
+        char advance();
 
-        inline std::string_view read_simple_string(std::string_view terminators);
-        inline std::string_view read_quoted_string();
+        std::string_view read_simple_string(std::string_view terminators);
+        std::string_view read_quoted_string();
         friend KVParser;
 
     public:
@@ -64,6 +61,3 @@ namespace ValveKeyValueFormat {
         TokenPair next_token();
     };
 }// namespace ValveKeyValueFormat
-
-
-#endif//KVPARSER_KV_LEXER_HPP
